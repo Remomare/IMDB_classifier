@@ -2,7 +2,6 @@ import torch
 import torch.nn as nn
 from device_set_torch import device_set
 
-
 class SentimentRNN(nn.Module):
     def __init__(self,no_layers,vocab_size,output_dim,hidden_dim,embedding_dim,drop_prob=0.5):
         super(SentimentRNN,self).__init__()
@@ -58,7 +57,7 @@ class SentimentRNN(nn.Module):
         ''' Initializes hidden state '''
         # Create two new tensors with sizes n_layers x batch_size x hidden_dim,
         # initialized to zero, for hidden state and cell state of LSTM
-        h0 = torch.zeros((self.no_layers,batch_size,self.hidden_dim)).to(device_set)
-        c0 = torch.zeros((self.no_layers,batch_size,self.hidden_dim)).to(device_set)
+        h0 = torch.zeros((self.no_layers,batch_size,self.hidden_dim)).to(device_set())
+        c0 = torch.zeros((self.no_layers,batch_size,self.hidden_dim)).to(device_set())
         hidden = (h0,c0)
         return hidden

@@ -4,7 +4,7 @@ import torch
 import torch.nn as nn
 from torch.utils.data import TensorDataset, DataLoader
 from sklearn.model_selection import train_test_split
-from device_set_torch import device_set
+import device_set_torch 
 from tockenization import tockenize
 from lstm_padding import padding_
 from lstm_model import SentimentRNN
@@ -14,9 +14,10 @@ from criterion_torch import BCELoss
 from optimizer_torch import Adam
 
 #Cpu or Gpu
+device_set = device_set_torch.device_set()
 print(device_set)
 
-base_csv = '/kaggle/input/imdb-dataset-of-50k-movie-reviews/IMDB Dataset.csv'
+base_csv = '/data/IMDB Dataset.csv'
 df = pd.read_csv(base_csv)
 df.head()
 
