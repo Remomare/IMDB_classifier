@@ -4,14 +4,14 @@ import torch
 import torch.nn as nn
 from torch.utils.data import TensorDataset, DataLoader
 from sklearn.model_selection import train_test_split
-import device_set
-import tockenization as tockenize
-import lstm_padding as padding_
-import lstm_model as SentimentRNN
-import accuracy as accuracy_
-import inferance as predict_text
-import criterion as BCELoss
-import optimizer as Adam
+from device_set_torch import device_set
+from tockenization import tockenize
+from lstm_padding import padding_
+from lstm_model import SentimentRNN
+from accuracy import accuracy_
+from inferance import predict_text
+from criterion_torch import BCELoss
+from optimizer_torch import Adam
 
 #Cpu or Gpu
 print(device_set)

@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-import device_set
+from device_set_torch import device_set
 
 
 class SentimentRNN(nn.Module):

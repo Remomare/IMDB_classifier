@@ -1,8 +1,8 @@
 import numpy as np
 import torch
-import device_set
-import lstm_padding as padding_
-import tockenization as preprocess_string
+from device_set_torch import device_set
+from lstm_padding import padding_
+from tockenization import preprocess_string
 
 def predict_text(text,model,vocab):
         word_seq = np.array([vocab[preprocess_string(word)] for word in text.split() 
