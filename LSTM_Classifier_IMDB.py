@@ -4,7 +4,7 @@ import torch
 import torch.nn as nn
 from torch.utils.data import TensorDataset, DataLoader
 from sklearn.model_selection import train_test_split
-import device_set_torch 
+from device_set_torch import device_set
 from tockenization import tockenize
 from lstm_padding import padding_
 from lstm_model import SentimentRNN
@@ -14,8 +14,7 @@ from criterion_torch import BCELoss
 from optimizer_torch import Adam
 
 #Cpu or Gpu
-device_set = device_set_torch.device_set()
-print(device_set)
+print(device_set())
 
 base_csv = '/data/IMDB Dataset.csv'
 df = pd.read_csv(base_csv)
@@ -53,7 +52,7 @@ hidden_dim = 256
 model = SentimentRNN(no_layers,vocab_size,output_dim,hidden_dim,embedding_dim,drop_prob=0.5)
 
 #moving to gpu
-model.to(device_set)
+model.to(device_set())
 print(model)
 
 # loss and optimization functions
@@ -78,7 +77,7 @@ for epoch in range(epochs):
     h = model.init_hidden(batch_size)
     for inputs, labels in train_loader:
         
-        inputs, labels = inputs.to(device_set), labels.to(device_set)   
+        inputs, labels = inputs.to(device_set()), labels.to(device_set())   
         # Creating new variables for the hidden state, otherwise
         # we'd backprop through the entire training history
         h = tuple([each.data for each in h])
@@ -106,7 +105,7 @@ for epoch in range(epochs):
     for inputs, labels in valid_loader:
             val_h = tuple([each.data for each in val_h])
 
-            inputs, labels = inputs.to(device_set), labels.to(device_set)
+            inputs, labels = inputs.to(device_set()), labels.to(device_set())
 
             output, val_h = model(inputs, val_h)
             val_loss = criterion(output.squeeze(), labels.float())
